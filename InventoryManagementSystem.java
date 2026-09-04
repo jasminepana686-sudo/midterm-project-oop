@@ -22,11 +22,17 @@ public class InventoryManagementSystem{
         System.out.println();
     }
 
+    private void printCentered(String text, int width) {
+        int padding = (width - text.length()) / 2;
+        String spaces = " ".repeat(Math.max(padding, 0));
+        System.out.println(spaces + text);
+    }
+
     public void addItem(){
         System.out.println();
         
         printDivider();       
-        System.out.println("ADD NEW ITEM");
+        printCentered("ADD NEW ITEM", 44);
         printDivider();
 
         System.out.println("Please enter the following details:");
@@ -65,7 +71,7 @@ public class InventoryManagementSystem{
         System.out.println();
         
         printDivider();       
-        System.out.println("UPDATE ITEM");
+        printCentered("UPDATE ITEM", 44);
         printDivider();
         
         String id = InputValidator.readFindID(sc, "Item ID: ");
@@ -104,7 +110,7 @@ public class InventoryManagementSystem{
         System.out.println();
         
         printDivider();       
-        System.out.println("REMOVE ITEM");
+        printCentered("REMOVE ITEM", 44);
         printDivider();
         
         String id = InputValidator.readFindID(sc, "Item ID: ");
@@ -126,7 +132,7 @@ public class InventoryManagementSystem{
         System.out.println();
         
         printDivider();       
-        System.out.println("ITEMS BY CATEGORY");
+        printCentered("ITEMS BY CATEGORY", 44);
         printDivider();
         
         String category = InputValidator.readCategory(sc, "Category [Clothing/Electronics/Entertainment]: ");
@@ -160,7 +166,7 @@ public class InventoryManagementSystem{
         System.out.println();
         
         System.out.println("-".repeat(60));       
-        System.out.println("ALL ITEMS");
+        printCentered("ALL ITEMS IN INVENTORY", 60);
         
         List<Item> all = inventory.getAllItems();
 
@@ -188,7 +194,7 @@ public class InventoryManagementSystem{
         System.out.println();
         
         printDivider();       
-        System.out.println("SEARCH ITEM");
+        printCentered("SEARCH ITEM", 44);
         printDivider();
 
         String id = InputValidator.readFindID(sc, "Item ID: ");
@@ -218,18 +224,18 @@ public class InventoryManagementSystem{
         System.out.println();
         
         printDivider();       
-        System.out.println("SORTED ITEMS");
+        printCentered("SORTED ITEMS", 44);
         printDivider();
         
         List<Item> all = inventory.getAllItems();
-
-        String sortField = InputValidator.readQuantityOrPrice(sc, "Sort by [Quantity/Price]: ");
-        String sortOrder = InputValidator.readSortOrder(sc, "Sort order [Ascending/Descending]: ");
 
         if (all.isEmpty()) {
             System.out.println("No items in the inventory.");
             return;
         }
+
+        String sortField = InputValidator.readQuantityOrPrice(sc, "Sort by [Quantity/Price]: ");
+        String sortOrder = InputValidator.readSortOrder(sc, "Sort order [Ascending/Descending]: ");
 
         Comparator<Item> comparator;
 
@@ -265,7 +271,7 @@ public class InventoryManagementSystem{
         System.out.println();
         
         printDivider();       
-        System.out.println("LOW STOCK ITEMS");
+        printCentered("LOW STOCK ITEMS", 44);
         printDivider();
         
         List<Item> lowStockItems = inventory.getLowStockItems();

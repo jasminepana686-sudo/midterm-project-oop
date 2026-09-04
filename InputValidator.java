@@ -60,17 +60,16 @@ public class InputValidator {
         while (!valid) {
             System.out.print(prompt);
             String input = sc.nextLine().trim();
-            try {
+
+            if (!input.matches("0|[1-9]\\d*")) {
+                System.out.println("Invalid Quantity! Use whole numbers only, e.g. 10.");
+            } else {
                 quantity = Integer.parseInt(input);
-                if (input.matches("0\\d+")) {
-                    System.out.println("Input cannot have leading zeros.");
-                } else if (quantity > 0) {
+                if (quantity > 0) {
                     valid = true;
                 } else {
-                    System.out.println("Invalid Quantity!");
+                    System.out.println("Invalid Quantity! Must be greater than 0.");
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid Quantity!");
             }
         }
         return quantity;
@@ -82,17 +81,16 @@ public class InputValidator {
         while (!valid) {
             System.out.print(prompt);
             String input = sc.nextLine().trim();
-            try {
+
+            if (!input.matches("(0|[1-9]\\d*)(\\.\\d+)?")) {
+                System.out.println("Invalid Price! Use digits only, e.g. 9.99 or 100.");
+            } else {
                 price = Double.parseDouble(input);
-                if (input.matches("0\\d+")) {
-                    System.out.println("Input cannot have leading zeros.");
-                } else if (price > 0) {
+                if (price > 0) {
                     valid = true;
                 } else {
                     System.out.println("Invalid Price! Must be greater than 0.");
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid Price! Please enter a valid number.");
             }
         }
         return price;
