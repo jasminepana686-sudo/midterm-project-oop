@@ -38,7 +38,12 @@ public class InventoryManagementSystem{
         System.out.println("Please enter the following details:");
         System.out.println("Choose a category: \n- Clothing \n- Electronics \n- Entertainment");
         String category = InputValidator.readCategory(sc, "Category: ");
-        String id = InputValidator.readID(sc, "Item ID [e.g., C001]: ");
+        System.out.println("ID format: [C/E/T] followed by 3 digits (e.g. C001, E045, T199)");
+        String id = InputValidator.readID(sc, "Item ID: ");
+        while (inventory.idExists(id)) {
+            System.out.println("ID '" + id + "' already exists! Please enter a different ID.");
+            id = InputValidator.readID(sc, "Item ID: ");
+        }
         String name = InputValidator.readName(sc, "Item Name: ");
         int quantity = InputValidator.readQuantity(sc, "Quantity: ");
         double price = InputValidator.readPrice(sc, "Price: Php ");
@@ -90,13 +95,13 @@ public class InventoryManagementSystem{
 
         if (toUpdate.equals("quantity")){
             int oldQuantity = foundItem.getQuantity();
-            int newQuantity = InputValidator.readQuantity(sc, "Updated Quantity: ");
+            int newQuantity = InputValidator.readQuantity(sc, "New Quantity: ");
             foundItem.setQuantity(newQuantity);
             System.out.println("Quantity of " + foundItem.getName() + " is updated from " 
                 + oldQuantity + " to " + newQuantity);
         } else{
             double oldPrice = foundItem.getPrice();
-            double newPrice = InputValidator.readPrice(sc, "Updated Price: Php");
+            double newPrice = InputValidator.readPrice(sc, "New Price: Php");
             foundItem.setPrice(newPrice);
             System.out.println("Price of " + foundItem.getName() + " is updated from " 
                 + oldPrice + " to " + newPrice);
@@ -140,13 +145,13 @@ public class InventoryManagementSystem{
         List<Item> filtered = inventory.getItemsByCategory(category);
 
         if (filtered.isEmpty()) {
+            printDivider();
             System.out.println("No items found in this category.");
             printDivider();
             printReturningMenu();
             return;
         }
 
-        System.out.println();
         System.out.println("-".repeat(60));
         System.out.println(filtered.get(0).getCategory() + " Items:");
         System.out.println("=".repeat(60));
@@ -198,11 +203,14 @@ public class InventoryManagementSystem{
         printDivider();
 
         String id = InputValidator.readFindID(sc, "Item ID: ");
+        printDivider();
         
         Item foundItem = inventory.findItemById(id);
         
         if (foundItem == null) {
             System.out.println("Item not found!");
+            printDivider();
+            printReturningMenu();
             return;
         }
 
@@ -231,11 +239,15 @@ public class InventoryManagementSystem{
 
         if (all.isEmpty()) {
             System.out.println("No items in the inventory.");
+            printDivider();
+            printReturningMenu();
             return;
         }
 
         String sortField = InputValidator.readQuantityOrPrice(sc, "Sort by [Quantity/Price]: ");
         String sortOrder = InputValidator.readSortOrder(sc, "Sort order [Ascending/Descending]: ");
+        printDivider(); 
+        System.out.println();
 
         Comparator<Item> comparator;
 
@@ -250,9 +262,7 @@ public class InventoryManagementSystem{
         }
 
         all.sort(comparator);
-
-        System.out.println();
-        System.out.println("-".repeat(60));
+        System.out.println("=".repeat(60));
         System.out.println("Sorted Items:");
         System.out.println("=".repeat(60));
         System.out.printf("%-10s %-15s %-10s %-10s %-15s%n",
@@ -278,6 +288,8 @@ public class InventoryManagementSystem{
         
         if (lowStockItems.isEmpty()) {
             System.out.println("No items with low stock.");
+            printDivider();
+            printReturningMenu();
             return;
         }
 

@@ -12,7 +12,7 @@ public class InputValidator {
             if (input.isEmpty()){
                 System.out.println("Input cannot be empty. Please try again.");
             } else if (!input.equals("clothing") && !input.equals("electronics") && !input.equals("entertainment")){
-                System.out.println("Invalid category! Must be clothing, electronics, or entertainment.");
+                System.out.println("Category '" + input + "' does not exist! Must be Clothing, Electronics, or Entertainment.");
             } else {
                 valid = true;
             }
@@ -47,7 +47,11 @@ public class InputValidator {
 
             if (input.isEmpty()){
                 System.out.println("Input cannot be empty. Please try again.");
-            } else {
+            } else if (!input.matches("[a-zA-Z0-9 ]+")) {
+                System.out.println("Invalid name! Use letters, numbers, and spaces only.");
+            } else if (input.length() > 20) {
+                System.out.println("Name too long! Max 20 characters.");
+            }else {
                 valid = true;
             }
         }
@@ -65,10 +69,10 @@ public class InputValidator {
                 System.out.println("Invalid Quantity! Use whole numbers only, e.g. 10.");
             } else {
                 quantity = Integer.parseInt(input);
-                if (quantity > 0) {
+                if (quantity >= 0) {
                     valid = true;
                 } else {
-                    System.out.println("Invalid Quantity! Must be greater than 0.");
+                    System.out.println("Invalid Quantity! Must be a non-negative number.");
                 }
             }
         }

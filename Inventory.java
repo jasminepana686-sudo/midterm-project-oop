@@ -16,6 +16,10 @@ public class Inventory {
         return null;
     }
 
+    public boolean idExists(String id) {
+        return findItemById(id) != null;
+    }
+
     public boolean removeItem(String id) {
         Item foundItem = findItemById(id);
         if (foundItem == null) {
