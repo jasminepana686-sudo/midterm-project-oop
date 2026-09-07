@@ -69,10 +69,10 @@ public class InputValidator {
                 System.out.println("Invalid Quantity! Use whole numbers only, e.g. 10.");
             } else {
                 quantity = Integer.parseInt(input);
-                if (quantity >= 0 && quantity <= 1000000) {
+                if (quantity >= 0 && quantity <= 10000) {
                     valid = true;
                 } else {
-                    System.out.println("Invalid Quantity! Must be a number between 0 and 1,000,000.");
+                    System.out.println("Invalid Quantity! Must be a number between 0 and 10,000.");
                 }
             }
         }
