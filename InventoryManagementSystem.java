@@ -38,7 +38,7 @@ public class InventoryManagementSystem{
         System.out.println("Please enter the following details:");
         System.out.println("Choose a category: \n- Clothing \n- Electronics \n- Entertainment");
         String category = InputValidator.readCategory(sc, "Category: ");
-        System.out.println("ID format: [C/E/T] followed by 3 digits (e.g. C001, E045, T199)");
+        System.out.println("ID format (e.g. C001, E045, T199): \n- First letter should be C (for Clothing), E (for Electronics), or T (for Entertainment) \n- Followed by 3 digits");
         String id = InputValidator.readID(sc, "Item ID: ");
         while (inventory.idExists(id)) {
             System.out.println("ID '" + id + "' already exists! Please enter a different ID.");

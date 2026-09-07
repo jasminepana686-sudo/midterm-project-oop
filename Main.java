@@ -47,7 +47,6 @@ public class Main{
                     system.displayLowStock();
                     break;
                 case 9:
-                    printDivider();
                     System.out.println();
                     printDivider();
                     System.out.println("Exiting the system. Goodbye!");
