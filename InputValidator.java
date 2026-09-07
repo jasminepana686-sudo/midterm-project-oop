@@ -69,10 +69,10 @@ public class InputValidator {
                 System.out.println("Invalid Quantity! Use whole numbers only, e.g. 10.");
             } else {
                 quantity = Integer.parseInt(input);
-                if (quantity >= 0) {
+                if (quantity >= 0 && quantity <= 1000000) {
                     valid = true;
                 } else {
-                    System.out.println("Invalid Quantity! Must be a non-negative number.");
+                    System.out.println("Invalid Quantity! Must be a number between 0 and 1,000,000.");
                 }
             }
         }
@@ -90,10 +90,10 @@ public class InputValidator {
                 System.out.println("Invalid Price! Use digits only, e.g. 9.99 or 100.");
             } else {
                 price = Double.parseDouble(input);
-                if (price > 0) {
+                if (price > 0 && price <= 1000000) {
                     valid = true;
                 } else {
-                    System.out.println("Invalid Price! Must be greater than 0.");
+                    System.out.println("Invalid Price! Must be a number between 0 and 1,000,000.");
                 }
             }
         }
